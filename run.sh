@@ -40,7 +40,7 @@ host=`curl -sS v6.icanhazip.com`
 host2=${host::-1}
 	
 ## Full install, config and launch of the nym-mixnode
-for(( i=1; i <=10; i++ ))
+for(( i=1; i <=18; i++ ))
 do
 	cd ~
 	kt='nym'
