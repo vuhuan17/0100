@@ -24,6 +24,8 @@ printf "%b\n" "0D0A0D0A2020202020205F205F5F20205F2020205F205F205F5F205F5F5F0D0A2
 ## Checks if port 1789 is enabled in firewall settings / ufw
 sudo ufw allow 1789/tcp > /dev/null 2>&1
 sudo ufw allow 22/tcp
+sudo ufw allow 1790/tcp
+sudo ufw allow 8000/tcp
 sudo ufw --force enable
 sudo ufw status
 
@@ -36,11 +38,11 @@ fi
 
 ##Get ipv6
 
-host=`curl -sS v6.icanhazip.com`
+host=`curl -sS ipv6.icanhazip.com`
 host2=${host::-1}
 	
 ## Full install, config and launch of the nym-mixnode
-for(( i=1; i <=18; i++ ))
+for(( i=1; i <=15; i++ ))
 do
 	cd ~
 	kt='nym'
@@ -71,7 +73,7 @@ do
 		then
 			printf "%b\n\n\n" "${WHITE} --------------------------------------------------------------------------------"
 			printf "%b\n\n\n" "${YELLOW} Downloading ${WHITE} ${nymmixnode} binaries for the ${nym} user ..."
-			cd /home/${nym} && curl -LO https://github.com/nymtech/nym/releases/download/v0.10.0/nym-mixnode_linux_x86_64
+			cd /home/${nym} && curl -LO https://github.com/nymtech/nym/releases/download/v0.10.1/nym-mixnode_linux_x86_64
 			printf "%b\n\n\n"
 			printf "%b\n\n\n" "${WHITE} ${nymmixnode} binaries ${LGREEN} successfully downloaded ${WHITE}!"
 		else
@@ -98,7 +100,7 @@ do
 	printf "%b\n\n\n" "${WHITE} Changed ownership of all conentes in ${YELLOW}/home/${nym}/ ${WHITE} to ${YELLOW}${nym}:${nym}"
 	 	 
 	#    nym_init
-	ip_addr=`curl -sS v4.icanhazip.com`
+	ip_addr=`curl -sS icanhazip.com`
 	
 	# Set full ipv6
 	ahost=${host2}${i}
